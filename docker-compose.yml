@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  frontend:
+    image: kalikidhar/frontend-react:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  
+  backend:
+    image: kalikidhar/backend-spring:latest
+    ports:
+      - "8000:8000"
+    
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_ROOT_PASSWORD: some_password
+    volumes:
+      - data_vol:/var/lib/mysql
+volumes:
+  data_vol:
